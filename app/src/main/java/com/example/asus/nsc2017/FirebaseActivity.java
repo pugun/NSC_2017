@@ -75,13 +75,13 @@ public class FirebaseActivity {
 
     public static void showDataList(){
         for (String keyLost: StoreData.lostList) {
-            Log.d("[LOST-LIST]" , keyLost);
+            Log.e("[LOST-LIST]" , keyLost);
         }for (String keyThief: StoreData.lostList) {
-            Log.d("[THIEF-LIST]" , keyThief);
+            Log.e("[THIEF-LIST]" , keyThief);
         }
     }
 
     static class StoreData{
-        public static ArrayList<String> lostList , thiefList;
+        public static ArrayList<String> lostList=new ArrayList<>(), thiefList = new ArrayList<>();
     }
 }

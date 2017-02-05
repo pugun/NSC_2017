@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MissCar extends MainActivity {
     ViewPager viewPager;
-    customSwip customSwip;
+    CustomSwip customSwip;
     private PopupMenu mPopupMenu;
 
     @Override
@@ -24,7 +24,7 @@ public class MissCar extends MainActivity {
         setContentView(R.layout.activity_miss_car);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        customSwip = new customSwip(this);
+        customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
