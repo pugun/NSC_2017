@@ -257,7 +257,7 @@
                 android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"></TextView>
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/idprb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
