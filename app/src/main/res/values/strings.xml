@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">NSC2017</string>
     <string name="title_activity_splash">Splash</string>
+
+    <string name="title_activity_error">Error</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
