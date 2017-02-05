@@ -5,6 +5,16 @@ package com.example.asus.nsc2017.dataModel;
  */
 
 public class OwnerModel {
+    @Override
+    public String toString() {
+        return "OwnerModel{" +
+                "address='" + address + '\'' +
+                ", age=" + age +
+                ", birthDate='" + birthDate + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
     /**
      * address : 48/15 ถ.นกแก้ว ตำบลกุดป่อง อ.เมือง จ.เลย 42000

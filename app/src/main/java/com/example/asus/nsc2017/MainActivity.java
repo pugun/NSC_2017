@@ -1,5 +1,6 @@
 package com.example.asus.nsc2017;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,12 +28,15 @@ public class MainActivity extends AppCompatActivity {
     private PopupMenu mPopupMenu;
     private Intent recieveDataIntent;
     private String lic1, lic2, prov;
+    private static Context staticContext;
 
+    private String ownerID, carID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        staticContext = getApplicationContext();
 
         /**
          * Getting data from another class
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         recieveDataIntent = getIntent();
         lic2 = recieveDataIntent.getStringExtra(Type.GET_LICENSE2);
         prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
+
+        importDataFromStoreData();
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         mPopupMenu = new PopupMenu(this, imageButton);
@@ -74,8 +80,33 @@ public class MainActivity extends AppCompatActivity {
         province.setText(prov);
     }
 
-    public static void intentNotifiedData(boolean isLost , boolean isThief){
+    public void importDataFromStoreData() {
+        boolean isTheif = false, isLost = false;
 
+        ownerID = StoreData.carsModel.getOwner_id();
+        carID = StoreData.carsModel.getIdcar();
+
+        if (StoreData.thiefList.contains(ownerID)) isTheif = true;
+        if (StoreData.lostList.contains(carID)) isLost = true;
+
+        intentNotifiedData(isLost, isTheif);
+    }
+
+    public void intentNotifiedData(boolean isLost, boolean isThief) {
+        Intent intentToAlert = new Intent(getApplicationContext() , Alert.class);
+        if (isLost && isThief) {
+            intentToAlert.putExtra("THIEF" , true);
+            intentToAlert.putExtra("LOST" , true);
+        } else if (isLost) {
+
+        } else if (isThief) {
+
+        }
+        startActivity(intentToAlert);
+    }
+
+    public static void intentNotFound() {
+        staticContext.startActivity(new Intent(staticContext, Error.class));
     }
 
     @Override

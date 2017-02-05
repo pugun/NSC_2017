@@ -36,12 +36,12 @@ public class FirebaseActivity {
                 StoreData.carsModel = cars.child(StoreData.currentLicense).getValue(CarsModel.class);
                 Log.e("FIREBASE", StoreData.carsModel.getColor());
 
-                StoreData.carsModel.setOwner_id(cars.child(StoreData.currentLicense).child("owner_id").getValue().toString());
+                //StoreData.carsModel.setOwner_id(cars.child(StoreData.currentLicense).child("owner_id").getValue().toString());
                 ownerID = StoreData.carsModel.getOwner_id();
                 StoreData.ownerModel = owner.child(ownerID).getValue(OwnerModel.class);
             }
             else {
-
+                MainActivity.intentNotFound();
             }
         }
 
@@ -94,7 +94,7 @@ public class FirebaseActivity {
         for (String keyLost : StoreData.lostList) {
             Log.e("[LOST-LIST]", keyLost);
         }
-        for (String keyThief : StoreData.lostList) {
+        for (String keyThief : StoreData.thiefList) {
             Log.e("[THIEF-LIST]", keyThief);
         }
     }
