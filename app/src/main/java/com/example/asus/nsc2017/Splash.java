@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-
 public class Splash extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -34,7 +33,6 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         mAuth = FirebaseAuth.getInstance();
-
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
