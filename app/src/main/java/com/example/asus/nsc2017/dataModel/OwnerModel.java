@@ -17,7 +17,7 @@ public class OwnerModel {
     private String address;
     private int age;
     private String birthDate;
-    private long id;
+    private String id;
     private String name;
 
     public String getAddress() {
@@ -44,11 +44,11 @@ public class OwnerModel {
         this.birthDate = birthDate;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
