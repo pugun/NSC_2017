@@ -49,7 +49,7 @@ public class Type extends AppCompatActivity implements View.OnClickListener {
                 intent.putExtra(GET_LICENSE2, licenseSend2);
                 intent.putExtra(GET_PROVINCE, provinceSend);
                 FirebaseActivity.showDataList();
-
+                FirebaseActivity.getLicenseData(licenseSend2);
                 startActivity(intent);
             } catch (Exception ex) {
                 Toast.makeText(getApplicationContext(), "Something Error", Toast.LENGTH_LONG).show();

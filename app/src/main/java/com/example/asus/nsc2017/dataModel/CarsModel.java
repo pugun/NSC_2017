@@ -24,11 +24,11 @@ public class CarsModel {
     private String engine;
     private String expireDate;
     private String fuel;
-    private int idcar;
-    private int idprb;
+    private String idcar;
+    private String idprb;
     private String issueDate;
     private String model;
-    private long owner_id;
+    private String owner_id;
 
     public String getBrand() {
         return brand;
@@ -70,19 +70,19 @@ public class CarsModel {
         this.fuel = fuel;
     }
 
-    public int getIdcar() {
+    public String getIdcar() {
         return idcar;
     }
 
-    public void setIdcar(int idcar) {
+    public void setIdcar(String idcar) {
         this.idcar = idcar;
     }
 
-    public int getIdprb() {
+    public String getIdprb() {
         return idprb;
     }
 
-    public void setIdprb(int idprb) {
+    public void setIdprb(String idprb) {
         this.idprb = idprb;
     }
 
@@ -102,11 +102,27 @@ public class CarsModel {
         this.model = model;
     }
 
-    public long getOwner_id() {
+    public String getOwner_id() {
         return owner_id;
     }
 
-    public void setOwner_id(long owner_id) {
+    public void setOwner_id(String owner_id) {
         this.owner_id = owner_id;
+    }
+
+    @Override
+    public String toString() {
+        return "CarsModel{" +
+                "brand='" + brand + '\'' +
+                ", color='" + color + '\'' +
+                ", engine='" + engine + '\'' +
+                ", expireDate='" + expireDate + '\'' +
+                ", fuel='" + fuel + '\'' +
+                ", idcar='" + idcar + '\'' +
+                ", idprb='" + idprb + '\'' +
+                ", issueDate='" + issueDate + '\'' +
+                ", model='" + model + '\'' +
+                ", owner_id='" + owner_id + '\'' +
+                '}';
     }
 }

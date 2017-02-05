@@ -22,19 +22,27 @@ public class FirebaseActivity {
             OWNER_REF = projectDataBase.getReference("owner"),
             LOST_REF = projectDataBase.getReference("lost"),
             THIEF_REF = projectDataBase.getReference("thief"),
-    WHOLE_PROJECT = projectDataBase.getReference();
+            DATA_REF = projectDataBase.getReference();
 
     private static ValueEventListener CAR_VALUE_LISTENER = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            long ownerID;
-            DataSnapshot cars , owner;
+            String ownerID;
+            DataSnapshot cars, owner;
             cars = dataSnapshot.child("car");
             owner = dataSnapshot.child("owner");
 
-            StoreData.carsModel = cars.child(StoreData.currentLicense).getValue(CarsModel.class);
-            ownerID = StoreData.carsModel.getOwner_id();
-            dataSnapshot.
+            if (cars.hasChild(StoreData.currentLicense)) {
+                StoreData.carsModel = cars.child(StoreData.currentLicense).getValue(CarsModel.class);
+                Log.e("FIREBASE", StoreData.carsModel.getColor());
+
+                StoreData.carsModel.setOwner_id(cars.child(StoreData.currentLicense).child("owner_id").getValue().toString());
+                ownerID = StoreData.carsModel.getOwner_id();
+                StoreData.ownerModel = owner.child(ownerID).getValue(OwnerModel.class);
+            }
+            else {
+                MainActivity.intentNotifiedData();
+            }
         }
 
         @Override
@@ -43,62 +51,73 @@ public class FirebaseActivity {
         }
     },
             LOST_LIST_PULLER = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            for(DataSnapshot lostCar : dataSnapshot.getChildren()){
-                StoreData.lostList.add(lostCar.getKey());
-            }
-        }
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot lostCar : dataSnapshot.getChildren()) {
+                        StoreData.lostList.add(lostCar.getKey());
+                    }
+                }
 
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-            Log.e("FIREBASE" , "[LOST CAR] Something error!");
-            databaseError.toException().printStackTrace();
-        }
-    } , THIEF_LIST_PULLER = new ValueEventListener() {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e("FIREBASE", "[LOST CAR] Something error!");
+                    databaseError.toException().printStackTrace();
+                }
+            }, THIEF_LIST_PULLER = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            for(DataSnapshot thief : dataSnapshot.getChildren()){
+            for (DataSnapshot thief : dataSnapshot.getChildren()) {
                 StoreData.thiefList.add(thief.getKey());
             }
         }
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
-            Log.e("FIREBASE" , "[THIEF LIST] Something error!");
+            Log.e("FIREBASE", "[THIEF LIST] Something error!");
             databaseError.toException().printStackTrace();
         }
     };
 
-    public static boolean checkCarContentAvailable(String licensePlate , String provice) {
+    public static boolean checkCarContentAvailable(String licensePlate, String provice) {
         CAR_REF.addValueEventListener(CAR_VALUE_LISTENER);
         return true;
     }
 
 
     //This method will use for adding listener after login to firebase
-    public static void initializeDataList(){
+    public static void initializeDataList() {
         LOST_REF.addValueEventListener(LOST_LIST_PULLER);
         THIEF_REF.addValueEventListener(THIEF_LIST_PULLER);
     }
 
-    public static void showDataList(){
-        for (String keyLost: StoreData.lostList) {
-            Log.e("[LOST-LIST]" , keyLost);
-        }for (String keyThief: StoreData.lostList) {
-            Log.e("[THIEF-LIST]" , keyThief);
+    public static void showDataList() {
+        for (String keyLost : StoreData.lostList) {
+            Log.e("[LOST-LIST]", keyLost);
+        }
+        for (String keyThief : StoreData.lostList) {
+            Log.e("[THIEF-LIST]", keyThief);
         }
     }
 
-    public static void getLicenseData(){
-
+    public static void getLicenseData(String license) {
+        StoreData.setCurrentLicense(license);
+        try {
+            DATA_REF.removeEventListener(CAR_VALUE_LISTENER);
+        } catch (Exception ex) {
+            Log.e("FIREBASE", "Can't remove event listener");
+        }
+        DATA_REF.addValueEventListener(CAR_VALUE_LISTENER);
     }
+}
 
-    static class StoreData{
-        public static ArrayList<String> lostList=new ArrayList<>(), thiefList = new ArrayList<>();
-        public static CarsModel carsModel = new CarsModel();
-        public static LostModel lostModel;
-        public static OwnerModel ownerModel;
-        public static String currentLicense;
+class StoreData {
+    public static ArrayList<String> lostList = new ArrayList<>(), thiefList = new ArrayList<>();
+    public static CarsModel carsModel = new CarsModel();
+    public static LostModel lostModel;
+    public static OwnerModel ownerModel = new OwnerModel();
+    public static String currentLicense;
+
+    public static void setCurrentLicense(String newLicense) {
+        currentLicense = newLicense;
     }
 }

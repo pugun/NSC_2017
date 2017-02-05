@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         province.setText(prov);
     }
 
+    public static void intentNotifiedData(){
+        
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
