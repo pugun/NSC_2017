@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class Type extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String GET_PROVINCE = "province", GET_LICENSE2 = "license2", GET_LICENSE1 = "license1";
+    public static final String GET_PROVINCE = "province", GET_LICENSE2 = "license2";
 
     Button ok;
     EditText license1, license2;
@@ -26,7 +26,6 @@ public class Type extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
 
-        license1 = (EditText) findViewById(R.id.license1);
         license2 = (EditText) findViewById(R.id.license2);
         province = (EditText) findViewById(R.id.province);
         ok = (Button) findViewById(R.id.okBtn);
@@ -43,10 +42,10 @@ public class Type extends AppCompatActivity implements View.OnClickListener {
                 /*
                 SENT DATA TO OTHER CLASSES
                  */
-                licenseSend1 = license1.getText().toString();
+
                 licenseSend2 = license2.getText().toString();
                 provinceSend = province.getText().toString();
-                intent.putExtra(GET_LICENSE1, licenseSend1);
+
                 intent.putExtra(GET_LICENSE2, licenseSend2);
                 intent.putExtra(GET_PROVINCE, provinceSend);
                 startActivity(intent);

@@ -26,18 +26,13 @@ import static com.example.asus.nsc2017.R.id.imageButton;
 public class MainActivity extends AppCompatActivity {
     private PopupMenu mPopupMenu;
     private Intent recieveDataIntent;
-    private String lic1 , lic2 , prov;
-    TextView mConditionTextView;
-    TextView provi;
+    private String lic1, lic2, prov;
 
-    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mConditionRef = mRootRef.child("car");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         /**
          * Getting data from another class
@@ -61,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();
-                switch(id){
+                switch (id) {
                     case R.id.menuLogout:
                         FirebaseAuth.getInstance().signOut();
                         finish();
@@ -74,13 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
- //       TextView license = (TextView) findViewById(R.id.license);
- //       TextView province = (TextView) findViewById(R.id.province);
- //       license.setText(lic2);
- //       province.setText(prov);
-
-        mConditionTextView = (TextView) findViewById(R.id.license);
-        provi = (TextView) findViewById(R.id.province);
+        TextView license = (TextView) findViewById(R.id.license);
+        TextView province = (TextView) findViewById(R.id.province);
+        license.setText(lic2);
+        province.setText(prov);
     }
 
 
@@ -90,23 +82,5 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        mConditionRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String text = dataSnapshot.getValue(String.class);
-                mConditionTextView.setText(text);
-                provi.setText(text);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 }
