@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     EditText userName, passwordEdit;
-    Button loginBtn;
+    Button loginbtn;
     String email, password;
 
     private FirebaseAuth mAuth;
@@ -36,17 +36,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         userName = (EditText) findViewById(R.id.userName);
         passwordEdit = (EditText) findViewById(R.id.password);
-        loginBtn = (Button) findViewById(R.id.loginBtn);
+        loginbtn = (Button) findViewById(R.id.loginBtn);
 
         mAuth = FirebaseAuth.getInstance();
 
-        loginBtn.setOnClickListener(this);
+        loginbtn.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        if (v == loginBtn) {
+        if (v == loginbtn) {
             signingIn(userName.getText().toString(), passwordEdit.getText().toString());
         }
     }
@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(Login.this);
                             alertDialog.setTitle("Sign in Error").setMessage("Signing in Fail...\nPlease try again").show();
                         } else {
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), Option.class));
                         }
                     }
                 });
