@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     TextView provi;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mConditionRef = mRootRef.child("test");
+    DatabaseReference mConditionRef = mRootRef.child("car");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
