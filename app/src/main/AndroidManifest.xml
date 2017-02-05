@@ -21,7 +21,8 @@
         <activity android:name=".MissCar" />
         <activity android:name=".Option" />
         <activity android:name=".Type" />
-        <activity android:name=".Error"></activity>
+        <activity android:name=".Error" />
+        <activity android:name=".Alert"></activity>
     </application>
 
 </manifest>

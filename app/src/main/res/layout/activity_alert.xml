@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_alert"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.nsc2017.Alert"
+    android:background="@drawable/login">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView10"
+        android:background="@color/cast_intro_overlay_background_color" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/lostcar2"
+        android:id="@+id/lostCar"
+        android:layout_below="@+id/thief"
+        android:layout_alignLeft="@+id/thief"
+        android:layout_alignStart="@+id/thief"
+        android:layout_marginTop="25dp" />
+
+    <ImageView
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/thief"
+        android:layout_marginTop="57dp"
+        android:id="@+id/thief"
+        android:layout_width="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

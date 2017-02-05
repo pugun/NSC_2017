@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
          * Getting data from another class
          */
         recieveDataIntent = getIntent();
-        lic1 = recieveDataIntent.getStringExtra(Type.GET_LICENSE1);
         lic2 = recieveDataIntent.getStringExtra(Type.GET_LICENSE2);
         prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
 
