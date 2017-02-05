@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.asus.nsc2017.dataModel.CarsModel;
 import com.example.asus.nsc2017.dataModel.LostModel;
+import com.example.asus.nsc2017.dataModel.OwnerModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,12 +21,20 @@ public class FirebaseActivity {
     public static DatabaseReference CAR_REF = projectDataBase.getReference("car"),
             OWNER_REF = projectDataBase.getReference("owner"),
             LOST_REF = projectDataBase.getReference("lost"),
-            THIEF_REF = projectDataBase.getReference("thief");
+            THIEF_REF = projectDataBase.getReference("thief"),
+    WHOLE_PROJECT = projectDataBase.getReference();
 
     private static ValueEventListener CAR_VALUE_LISTENER = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            long ownerID;
+            DataSnapshot cars , owner;
+            cars = dataSnapshot.child("car");
+            owner = dataSnapshot.child("owner");
 
+            StoreData.carsModel = cars.child(StoreData.currentLicense).getValue(CarsModel.class);
+            ownerID = StoreData.carsModel.getOwner_id();
+            dataSnapshot.
         }
 
         @Override
@@ -81,7 +90,15 @@ public class FirebaseActivity {
         }
     }
 
+    public static void getLicenseData(){
+
+    }
+
     static class StoreData{
         public static ArrayList<String> lostList=new ArrayList<>(), thiefList = new ArrayList<>();
+        public static CarsModel carsModel = new CarsModel();
+        public static LostModel lostModel;
+        public static OwnerModel ownerModel;
+        public static String currentLicense;
     }
 }
