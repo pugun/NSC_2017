@@ -60,6 +60,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(Login.this);
                             alertDialog.setTitle("Sign in Error").setMessage("Signing in Fail...\nPlease try again").show();
                         } else {
+                            FirebaseActivity.initializeDataList();
                             startActivity(new Intent(getApplicationContext(), Option.class));
                         }
                     }

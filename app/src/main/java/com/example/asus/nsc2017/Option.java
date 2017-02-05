@@ -22,6 +22,7 @@ public class Option extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == type) {
+            FirebaseActivity.showDataList();
             startActivity(new Intent(getApplicationContext(), Type.class));
         }
     }

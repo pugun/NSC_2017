@@ -13,12 +13,12 @@ import android.widget.TextView;
  * Created by ASUS on 4/2/2560.
  */
 
-public class customSwip extends PagerAdapter {
+public class CustomSwip extends PagerAdapter {
     private int[] imageResources = {R.drawable.misscar1,R.drawable.misscar2,R.drawable.misscar3,};
     private Context ctx;
     private LayoutInflater layoutInflater;
 
-    public customSwip(Context c) {
+    public CustomSwip(Context c) {
         ctx = c;
     }
 
