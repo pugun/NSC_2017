@@ -41,7 +41,7 @@ public class FirebaseActivity {
                 StoreData.ownerModel = owner.child(ownerID).getValue(OwnerModel.class);
             }
             else {
-                MainActivity.intentNotifiedData();
+
             }
         }
 

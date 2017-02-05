@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         province.setText(prov);
     }
 
-    public static void intentNotifiedData(){
-        
+    public static void intentNotifiedData(boolean isLost , boolean isThief){
+
     }
 
     @Override
