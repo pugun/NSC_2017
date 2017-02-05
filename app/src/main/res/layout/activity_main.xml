@@ -408,13 +408,14 @@
     </TableLayout>
 
     <ImageButton
-        app:srcCompat="@android:drawable/sym_def_app_icon"
+        app:srcCompat="@drawable/option3"
         android:id="@+id/imageButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_width="27dp"
-        android:layout_height="27dp" />
+        android:layout_height="30dp"
+        android:layout_width="30dp"
+        android:background="@android:color/transparent"/>
 
     <TextView
         android:layout_width="wrap_content"
