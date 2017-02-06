@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Alert extends AppCompatActivity implements View.OnClickListener{
+public class Alert extends AppCompatActivity implements View.OnClickListener {
 
     Intent intent;
-    ImageView lostBtn , thiefBtn ;
+    ImageView lostBtn, thiefBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,20 +18,27 @@ public class Alert extends AppCompatActivity implements View.OnClickListener{
 
         boolean isLost = false, isThief = false;
         intent = getIntent();
-        isThief = intent.getBooleanExtra("THIEF" , false);
-        isLost = intent.getBooleanExtra("LOST" , false);
+        isThief = intent.getBooleanExtra("THIEF", false);
+        isLost = intent.getBooleanExtra("LOST", false);
 
         lostBtn = (ImageView) findViewById(R.id.lostCar);
         thiefBtn = (ImageView) findViewById(R.id.thief);
+        setComponentVisible(isLost, isThief);
+        lostBtn.setOnClickListener(this);
+        thiefBtn.setOnClickListener(this);
     }
 
-    public void setComponentVisible(boolean isLost , boolean isThief){
-        if(!isLost) lostBtn.setVisibility(View.GONE);
-        if(!isThief) thiefBtn.setVisibility(View.GONE);
+    public void setComponentVisible(boolean isLost, boolean isThief) {
+        if (!isLost) lostBtn.setVisibility(View.GONE);
+        if (!isThief) thiefBtn.setVisibility(View.GONE);
     }
 
     @Override
     public void onClick(View view) {
-
+        if (view == lostBtn) {
+            startActivity(new Intent(getApplicationContext() , MissCar.class));
+        } else if (view == thiefBtn){
+            startActivity(new Intent(getApplicationContext() , Warrant.class));
+        }
     }
 }
