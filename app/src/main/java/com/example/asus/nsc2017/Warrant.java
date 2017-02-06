@@ -51,21 +51,20 @@ public class Warrant extends MainActivity {
             }
         });
 
-        TextView name, birthDate, id, address, idcar, license ;
-        name = (TextView) findViewById(R.id.name);
-        birthDate = (TextView) findViewById(R.id.birthDate);
-        id = (TextView) findViewById(R.id.id);
-        address = (TextView) findViewById(R.id.address);
-        idcar = (TextView) findViewById(R.id.idcar);
+        TextView detail, lostDate, lostTime, license ;
+        detail = (TextView) findViewById(R.id.detail);
+        lostDate = (TextView) findViewById(R.id.lostDate);
+        lostTime = (TextView) findViewById(R.id.lostTime);
         license = (TextView) findViewById(R.id.license);
 
 
 
-        name.setText(StoreData.ownerModel.getName());
-        birthDate.setText(StoreData.ownerModel.getBirthDate());
-        id.setText(StoreData.ownerModel.getId());
-        address.setText(StoreData.ownerModel.getAddress());
+
+
         license.setText(StoreData.getCurrentLicense());
+//        detail.setText(StoreData.lostModel.getDetail());
+//        lostDate.setText(StoreData.lostModel.getLostDate());
+//        lostTime.setText(StoreData.lostModel.getLostTime());
 
 
 

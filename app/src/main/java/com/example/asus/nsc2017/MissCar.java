@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +54,22 @@ public class MissCar extends MainActivity {
                 return true;
             }
         });
+
+        TextView name, birthDate, id, address, idcar, license ;
+        name = (TextView) findViewById(R.id.name);
+        birthDate = (TextView) findViewById(R.id.birthDate);
+        id = (TextView) findViewById(R.id.id);
+        address = (TextView) findViewById(R.id.address);
+        idcar = (TextView) findViewById(R.id.idcar);
+        license = (TextView) findViewById(R.id.license);
+
+
+
+        name.setText(StoreData.ownerModel.getName());
+        birthDate.setText(StoreData.ownerModel.getBirthDate());
+        id.setText(StoreData.ownerModel.getId());
+        address.setText(StoreData.ownerModel.getAddress());
+        license.setText(StoreData.getCurrentLicense());
 
     }
 }
