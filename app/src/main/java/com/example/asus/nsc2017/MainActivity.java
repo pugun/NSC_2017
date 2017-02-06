@@ -121,18 +121,21 @@ public class MainActivity extends AppCompatActivity {
         if (StoreData.thiefList.contains(ownerID)) isTheif = true;
         if (StoreData.lostList.contains(carID)) isLost = true;
 
-        intentNotifiedData(isLost, isTheif);
+        if (isTheif || isLost)
+            intentNotifiedData(isLost, isTheif);
     }
 
     public void intentNotifiedData(boolean isLost, boolean isThief) {
-        Intent intentToAlert = new Intent(getApplicationContext() , Alert.class);
+        Intent intentToAlert = new Intent(getApplicationContext(), Alert.class);
         if (isLost && isThief) {
-            intentToAlert.putExtra("THIEF" , true);
-            intentToAlert.putExtra("LOST" , true);
+            intentToAlert.putExtra("THIEF", true);
+            intentToAlert.putExtra("LOST", true);
         } else if (isLost) {
-
+            intentToAlert.putExtra("THIEF", false);
+            intentToAlert.putExtra("LOST", true);
         } else if (isThief) {
-
+            intentToAlert.putExtra("THIEF", true);
+            intentToAlert.putExtra("LOST", false);
         }
         startActivity(intentToAlert);
     }
