@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         lic2 = recieveDataIntent.getStringExtra(Type.GET_LICENSE2);
         prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
 
-        importDataFromStoreData();
+ //       importDataFromStoreData();
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         mPopupMenu = new PopupMenu(this, imageButton);
@@ -78,6 +78,38 @@ public class MainActivity extends AppCompatActivity {
         TextView province = (TextView) findViewById(R.id.province);
         license.setText(lic2);
         province.setText(prov);
+
+        setTex();
+
+
+    }
+
+    public  void  setTex() {
+        TextView name, birthDate, id, address, idcar, issueDate, expireDate, brand, model, color, fuel, engine, idprb;
+        name = (TextView) findViewById(R.id.name);
+        id = (TextView) findViewById(R.id.id);
+        address = (TextView) findViewById(R.id.address);
+        idcar = (TextView) findViewById(R.id.idcar);
+        issueDate = (TextView) findViewById(R.id.issueDate);
+        expireDate = (TextView) findViewById(R.id.expireDate);
+        brand = (TextView) findViewById(R.id.brand);
+        model = (TextView) findViewById(R.id.model);
+        color = (TextView) findViewById(R.id.color);
+        fuel = (TextView) findViewById(R.id.fuel);
+        engine = (TextView) findViewById(R.id.engine);
+        idprb = (TextView) findViewById(R.id.idprb);
+        name.setText(StoreData.ownerModel.getName());
+        id.setText(StoreData.ownerModel.getId());
+        address.setText(StoreData.ownerModel.getAddress());
+        idcar.setText(StoreData.carsModel.getIdcar());
+        issueDate.setText(StoreData.carsModel.getIssueDate());
+        expireDate.setText(StoreData.carsModel.getExpireDate());
+        brand.setText(StoreData.carsModel.getBrand());
+        model.setText(StoreData.carsModel.getModel());
+        color.setText(StoreData.carsModel.getModel());
+        fuel.setText(StoreData.carsModel.getFuel());
+        engine.setText(StoreData.carsModel.getEngine());
+        idprb.setText(StoreData.carsModel.getIdprb());
     }
 
     public void importDataFromStoreData() {
