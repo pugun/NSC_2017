@@ -115,9 +115,10 @@ class StoreData {
     public static CarsModel carsModel = new CarsModel();
     public static LostModel lostModel;
     public static OwnerModel ownerModel = new OwnerModel();
-    public static String currentLicense;
+    public static String currentLicense = new String();
 
     public static void setCurrentLicense(String newLicense) {
         currentLicense = newLicense;
     }
+    public static String getCurrentLicense(){ return currentLicense; }
 }
