@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,8 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Warrant extends MainActivity {
     private PopupMenu mPopupMenu;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warrant);
 
@@ -51,7 +54,7 @@ public class Warrant extends MainActivity {
 
     }
 
-    
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
