@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         lic2 = recieveDataIntent.getStringExtra(Type.GET_LICENSE2);
         prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
 
- //       importDataFromStoreData();
+        importDataFromStoreData();
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         mPopupMenu = new PopupMenu(this, imageButton);
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public  void  setTex() {
+    public void setTex() {
         TextView name, birthDate, id, address, idcar, issueDate, expireDate, brand, model, color, fuel, engine, idprb;
         name = (TextView) findViewById(R.id.name);
         id = (TextView) findViewById(R.id.id);
