@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         lic2 = recieveDataIntent.getStringExtra(Type.GET_LICENSE2);
         prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
 
- //       importDataFromStoreData();
+   //     importDataFromStoreData();
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         mPopupMenu = new PopupMenu(this, imageButton);
@@ -85,8 +85,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public  void  setTex() {
-        TextView name, birthDate, id, address, idcar, issueDate, expireDate, brand, model, color, fuel, engine, idprb;
+        TextView name, birthDate, id, address, idcar, issueDate, expireDate, brand, model, color, fuel, engine, idprb ;
+
         name = (TextView) findViewById(R.id.name);
+        birthDate = (TextView) findViewById(R.id.birthDate);
         id = (TextView) findViewById(R.id.id);
         address = (TextView) findViewById(R.id.address);
         idcar = (TextView) findViewById(R.id.idcar);
@@ -98,7 +100,9 @@ public class MainActivity extends AppCompatActivity {
         fuel = (TextView) findViewById(R.id.fuel);
         engine = (TextView) findViewById(R.id.engine);
         idprb = (TextView) findViewById(R.id.idprb);
+
         name.setText(StoreData.ownerModel.getName());
+        birthDate.setText(StoreData.ownerModel.getBirthDate());
         id.setText(StoreData.ownerModel.getId());
         address.setText(StoreData.ownerModel.getAddress());
         idcar.setText(StoreData.carsModel.getIdcar());
