@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Warrant extends MainActivity {
     private PopupMenu mPopupMenu;
-
+    private static boolean isFirstTimeSync =true, isCreated =false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +71,13 @@ public class Warrant extends MainActivity {
 
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
+    }
+
+    public static void finishedSync(){
+
     }
 }

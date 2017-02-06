@@ -1,5 +1,6 @@
 package com.example.asus.nsc2017;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Intent recieveDataIntent;
     private String lic1, lic2, prov;
     private static Context staticContext;
+    private static boolean isFirstTimeSync = true, isCreated = false;
 
     private String ownerID, carID;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        isCreated = true;
         staticContext = getApplicationContext();
 
         /**
@@ -74,19 +77,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        bindingView();
         TextView license = (TextView) findViewById(R.id.license);
         TextView province = (TextView) findViewById(R.id.province);
         license.setText(lic2);
         province.setText(prov);
 
-        setTex();
-
-
+        if (isFirstTimeSync) startSync();
     }
 
-    public  void  setTex() {
-  //      String ageString = Integer.toString(StoreData.ownerModel.getAge());
-        TextView name, birthDate, id, address, idcar, issueDate, expireDate, brand, model, color, fuel, engine, idprb, age ;
+    static TextView name, birthDate, id, address, idcar, issueDate, expireDate, brand, model, color, fuel, engine, idprb, age;
+
+    private void bindingView() {
+        //      String ageString = Integer.toString(StoreData.ownerModel.getAge());
 
         name = (TextView) findViewById(R.id.name);
         birthDate = (TextView) findViewById(R.id.birthDate);
@@ -101,7 +104,10 @@ public class MainActivity extends AppCompatActivity {
         fuel = (TextView) findViewById(R.id.fuel);
         engine = (TextView) findViewById(R.id.engine);
         idprb = (TextView) findViewById(R.id.idprb);
-  //      age = (TextView) findViewById(R.id.age) ;
+        //      age = (TextView) findViewById(R.id.age) ;
+    }
+
+    private static void setTex() {
 
         name.setText(StoreData.ownerModel.getName());
         birthDate.setText(StoreData.ownerModel.getBirthDate());
@@ -116,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         fuel.setText(StoreData.carsModel.getFuel());
         engine.setText(StoreData.carsModel.getEngine());
         idprb.setText(StoreData.carsModel.getIdprb());
-  //      age.setText(ageString);
+        //      age.setText(ageString);
     }
 
     public void importDataFromStoreData() {
@@ -157,5 +163,39 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isCreated = false;
+        isFirstTimeSync = true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        isCreated = false;
+        isFirstTimeSync = true;
+    }
+
+    static ProgressDialog fetchingDialog;
+
+    public static void finishedSync() {
+        if (isCreated) {
+            fetchingDialog.dismiss();
+            setTex();
+        }
+    }
+
+    private void startSync() {
+        if (isCreated) {
+            isFirstTimeSync = false;
+            fetchingDialog = new ProgressDialog(MainActivity.this);
+            fetchingDialog.setCancelable(false);
+            fetchingDialog.setMessage("Fetching Data");
+            fetchingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            fetchingDialog.setIndeterminate(true);
+            fetchingDialog.show();
+        }
+    }
 
 }

@@ -18,6 +18,7 @@ public class MissCar extends MainActivity {
     ViewPager viewPager;
     CustomSwip customSwip;
     private PopupMenu mPopupMenu;
+    private static boolean isFirstTimeSync =true, isCreated =false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,10 @@ public class MissCar extends MainActivity {
         id.setText(StoreData.ownerModel.getId());
         address.setText(StoreData.ownerModel.getAddress());
         license.setText(StoreData.getCurrentLicense());
+
+    }
+
+    public static void finishedSync(){
 
     }
 }
