@@ -61,7 +61,7 @@
             android:textStyle="normal|bold"
             android:elevation="0dp"
             android:background="@color/cast_intro_overlay_background_color"
-            android:textColor="@color/colorAccent"></TextView>
+            android:textColor="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/textView1"
@@ -71,7 +71,7 @@
             android:background="@color/cast_intro_overlay_background_color"
             android:gravity="left"
             android:layout_width="match_parent"
-            android:text="                                  "></TextView>
+            android:text="                                  "/>
 
     </TableRow>
 
@@ -87,7 +87,7 @@
                 android:padding="5dp"
                 android:text="ยี่ห้อ"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="normal|bold"></TextView>
+                android:textStyle="normal|bold"/>
 
             <TextView
                 android:id="@+id/brand"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="TextView"
-                android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         </TableRow>
 
@@ -111,7 +111,7 @@
                 android:padding="5dp"
                 android:text="รุ่น"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="normal|bold"></TextView>
+                android:textStyle="normal|bold"/>
 
             <TextView
                 android:id="@+id/model"
@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="TextView"
-                android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         </TableRow>
 
@@ -135,7 +135,7 @@
                 android:padding="5dp"
                 android:text="สี"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="normal|bold"></TextView>
+                android:textStyle="normal|bold"/>
 
             <TextView
                 android:id="@+id/color"
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="TextView"
-                android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         </TableRow>
         <TableRow
@@ -158,7 +158,7 @@
                 android:padding="5dp"
                 android:text="ชนิดเชื้อเพลิง"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="normal|bold"></TextView>
+                android:textStyle="normal|bold"/>
 
             <TextView
                 android:id="@+id/fuel"
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="TextView"
-                android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         </TableRow>
         <TableRow
@@ -181,7 +181,7 @@
                 android:padding="5dp"
                 android:text="ขนาดเครื่องยนต์     "
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="normal|bold"></TextView>
+                android:textStyle="normal|bold"/>
 
             <TextView
                 android:id="@+id/engine"
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="TextView"
-                android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         </TableRow>
         <TableRow
@@ -204,7 +204,7 @@
                 android:padding="5dp"
                 android:text="อายุยานพาหนะ"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="normal|bold"></TextView>
+                android:textStyle="normal|bold"/>
 
             <TextView
                 android:id="@+id/age"
@@ -212,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="TextView"
-                android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         </TableRow>
         <TableRow
@@ -229,7 +229,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="normal|bold"
                 android:background="@color/cast_intro_overlay_background_color"
-                android:textColor="@color/colorAccent"></TextView>
+                android:textColor="@color/colorAccent"/>
 
             <TextView
                 android:id="@+id/textView1"
@@ -237,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:background="@color/cast_intro_overlay_background_color"></TextView>
+                android:background="@color/cast_intro_overlay_background_color"/>
 
         </TableRow>
 
@@ -254,7 +254,7 @@
                 android:text="เลขที่พรบ."
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="normal|bold"
-                android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"></TextView>
+                android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"/>
 
             <TextView
                 android:id="@+id/idprb"
@@ -262,7 +262,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="idprb"></TextView>
+                android:text="idprb"/>
 
         </TableRow>
 
