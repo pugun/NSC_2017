@@ -20,7 +20,7 @@ public class Warrant extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warrant);
 
@@ -50,6 +50,20 @@ public class Warrant extends MainActivity {
                 return true;
             }
         });
+
+        TextView name, birthDate, id, address, idcar ;
+        name = (TextView) findViewById(R.id.name);
+        birthDate = (TextView) findViewById(R.id.birthDate);
+        id = (TextView) findViewById(R.id.id);
+        address = (TextView) findViewById(R.id.address);
+        idcar = (TextView) findViewById(R.id.idcar);
+
+
+        name.setText(StoreData.ownerModel.getName());
+        birthDate.setText(StoreData.ownerModel.getBirthDate());
+        id.setText(StoreData.ownerModel.getId());
+        address.setText(StoreData.ownerModel.getAddress());
+
 
 
     }
