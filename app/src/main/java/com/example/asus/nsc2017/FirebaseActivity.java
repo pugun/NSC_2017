@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 /**
+ *
  * Created by ASUS on 24/1/2560.
  */
 public class FirebaseActivity {
@@ -43,6 +44,7 @@ public class FirebaseActivity {
             else {
                 MainActivity.intentNotFound();
             }
+            MainActivity.finishedSync();
         }
 
         @Override
@@ -74,6 +76,21 @@ public class FirebaseActivity {
         @Override
         public void onCancelled(DatabaseError databaseError) {
             Log.e("FIREBASE", "[THIEF LIST] Something error!");
+            databaseError.toException().printStackTrace();
+        }
+    } ,
+            THIEF_WARRANT_LIST_PULLER = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot thief) {
+            thief = thief.child(StoreData.getThiefID());
+            for(DataSnapshot warrant : thief.getChildren()){
+                StoreData.thiefWarrantList.add((String)warrant.getValue());
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.e("FIREBASE", "[LOST CAR] Something error!");
             databaseError.toException().printStackTrace();
         }
     };
@@ -108,6 +125,16 @@ public class FirebaseActivity {
         }
         DATA_REF.addValueEventListener(CAR_VALUE_LISTENER);
     }
+
+    public static void fetchThiefWarrantData(String citizenID){
+        StoreData.setThiefID(citizenID);
+        try {
+            THIEF_REF.removeEventListener(THIEF_WARRANT_LIST_PULLER);
+        }catch (Exception ex){
+            Log.e("FIREBASE", "Can't remove event listener");
+        }
+        THIEF_REF.addValueEventListener(THIEF_WARRANT_LIST_PULLER);
+    }
 }
 
 class StoreData {
@@ -116,6 +143,17 @@ class StoreData {
     public static LostModel lostModel;
     public static OwnerModel ownerModel = new OwnerModel();
     public static String currentLicense = new String();
+    public static ArrayList<String> thiefWarrantList = new ArrayList<>();
+
+    public static String getThiefID() {
+        return thiefID;
+    }
+
+    public static void setThiefID(String thiefID) {
+        StoreData.thiefID = thiefID;
+    }
+
+    private static String thiefID = new String();
 
     public static void setCurrentLicense(String newLicense) {
         currentLicense = newLicense;
