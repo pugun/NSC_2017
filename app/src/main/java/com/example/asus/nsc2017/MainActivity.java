@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         lic2 = recieveDataIntent.getStringExtra(Type.GET_LICENSE2);
         prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
 
-   //     importDataFromStoreData();
+        importDataFromStoreData();
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         mPopupMenu = new PopupMenu(this, imageButton);
@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public  void  setTex() {
-        TextView name, birthDate, id, address, idcar, issueDate, expireDate, brand, model, color, fuel, engine, idprb ;
+  //      String ageString = Integer.toString(StoreData.ownerModel.getAge());
+        TextView name, birthDate, id, address, idcar, issueDate, expireDate, brand, model, color, fuel, engine, idprb, age ;
 
         name = (TextView) findViewById(R.id.name);
         birthDate = (TextView) findViewById(R.id.birthDate);
@@ -100,12 +101,13 @@ public class MainActivity extends AppCompatActivity {
         fuel = (TextView) findViewById(R.id.fuel);
         engine = (TextView) findViewById(R.id.engine);
         idprb = (TextView) findViewById(R.id.idprb);
+  //      age = (TextView) findViewById(R.id.age) ;
 
         name.setText(StoreData.ownerModel.getName());
         birthDate.setText(StoreData.ownerModel.getBirthDate());
         id.setText(StoreData.ownerModel.getId());
         address.setText(StoreData.ownerModel.getAddress());
-        idcar.setText(StoreData.carsModel.getIdcar());
+//        idcar.setText(StoreData.carsModel.getIdcar());
         issueDate.setText(StoreData.carsModel.getIssueDate());
         expireDate.setText(StoreData.carsModel.getExpireDate());
         brand.setText(StoreData.carsModel.getBrand());
@@ -114,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         fuel.setText(StoreData.carsModel.getFuel());
         engine.setText(StoreData.carsModel.getEngine());
         idprb.setText(StoreData.carsModel.getIdprb());
+  //      age.setText(ageString);
     }
 
     public void importDataFromStoreData() {
