@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private static boolean isFirstTimeSync = true, isCreated = false;
 
     private String ownerID, carID;
+    private ImageView i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
 
         importDataFromStoreData();
+        setIm();
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         mPopupMenu = new PopupMenu(this, imageButton);
@@ -113,12 +116,12 @@ public class MainActivity extends AppCompatActivity {
         birthDate.setText(StoreData.ownerModel.getBirthDate());
         id.setText(StoreData.ownerModel.getId());
         address.setText(StoreData.ownerModel.getAddress());
-//        idcar.setText(StoreData.carsModel.getIdcar());
+        idcar.setText(StoreData.carsModel.getIdcar());
         issueDate.setText(StoreData.carsModel.getIssueDate());
         expireDate.setText(StoreData.carsModel.getExpireDate());
         brand.setText(StoreData.carsModel.getBrand());
         model.setText(StoreData.carsModel.getModel());
-        color.setText(StoreData.carsModel.getModel());
+        color.setText(StoreData.carsModel.getColor());
         fuel.setText(StoreData.carsModel.getFuel());
         engine.setText(StoreData.carsModel.getEngine());
         idprb.setText(StoreData.carsModel.getIdprb());
@@ -195,6 +198,16 @@ public class MainActivity extends AppCompatActivity {
             fetchingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             fetchingDialog.setIndeterminate(true);
             fetchingDialog.show();
+        }
+    }
+
+    public void setIm() {
+        i = (ImageView) findViewById(R.id.imageView6) ;
+        if(lic2.equals("กต3216")) {
+            i.setImageResource(R.drawable.kt3216);
+        }
+        if(lic2.equals("กต2020")) {
+            i.setImageResource(R.drawable.kt2020);
         }
     }
 
