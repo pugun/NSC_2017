@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (isTheif || isLost)
             intentNotifiedData(isLost, isTheif);
+
     }
 
     public void intentNotifiedData(boolean isLost, boolean isThief) {
@@ -157,7 +158,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void intentNotFound() {
-        staticContext.startActivity(new Intent(staticContext, Error.class));
+        if (isCreated) {
+            fetchingDialog.dismiss();
+        }
+        staticContext.startActivity(new Intent(staticContext, Error.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     @Override
@@ -209,6 +213,10 @@ public class MainActivity extends AppCompatActivity {
         if(lic2.equals("กต2020")) {
             i.setImageResource(R.drawable.kt2020);
         }
+        if(lic2.equals("2FAST4U")) {
+            i.setImageResource(R.drawable.iii);
+        }
+
     }
 
 }

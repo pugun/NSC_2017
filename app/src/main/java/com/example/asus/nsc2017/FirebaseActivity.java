@@ -40,11 +40,11 @@ public class FirebaseActivity {
                 //StoreData.carsModel.setOwner_id(cars.child(StoreData.currentLicense).child("owner_id").getValue().toString());
                 ownerID = StoreData.carsModel.getOwner_id();
                 StoreData.ownerModel = owner.child(ownerID).getValue(OwnerModel.class);
+                MainActivity.finishedSync();
             }
             else {
                 MainActivity.intentNotFound();
             }
-            MainActivity.finishedSync();
         }
 
         @Override
