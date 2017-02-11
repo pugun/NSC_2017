@@ -14,7 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 /**
- *
+ * Hello
  * Created by ASUS on 24/1/2560.
  */
 public class FirebaseActivity {
@@ -40,8 +40,7 @@ public class FirebaseActivity {
                 //StoreData.carsModel.setOwner_id(cars.child(StoreData.currentLicense).child("owner_id").getValue().toString());
                 ownerID = StoreData.carsModel.getOwner_id();
                 StoreData.ownerModel = owner.child(ownerID).getValue(OwnerModel.class);
-            }
-            else {
+            } else {
                 MainActivity.intentNotFound();
             }
             MainActivity.finishedSync();
@@ -49,7 +48,6 @@ public class FirebaseActivity {
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
-
         }
     },
             LOST_LIST_PULLER = new ValueEventListener() {
@@ -58,6 +56,7 @@ public class FirebaseActivity {
                     for (DataSnapshot lostCar : dataSnapshot.getChildren()) {
                         StoreData.lostList.add(lostCar.getKey());
                     }
+                    MissCar.finishedSync();
                 }
 
                 @Override
@@ -78,22 +77,23 @@ public class FirebaseActivity {
             Log.e("FIREBASE", "[THIEF LIST] Something error!");
             databaseError.toException().printStackTrace();
         }
-    } ,
+    },
             THIEF_WARRANT_LIST_PULLER = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot thief) {
-            thief = thief.child(StoreData.getThiefID());
-            for(DataSnapshot warrant : thief.getChildren()){
-                StoreData.thiefWarrantList.add((String)warrant.getValue());
-            }
-        }
+                @Override
+                public void onDataChange(DataSnapshot thief) {
+                    thief = thief.child(StoreData.getThiefID());
+                    for (DataSnapshot warrant : thief.getChildren()) {
+                        StoreData.thiefWarrantList.add((String) warrant.getValue());
+                    }
+                    Warrant.finishedSync();
+                }
 
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-            Log.e("FIREBASE", "[LOST CAR] Something error!");
-            databaseError.toException().printStackTrace();
-        }
-    };
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e("FIREBASE", "[LOST CAR] Something error!");
+                    databaseError.toException().printStackTrace();
+                }
+            };
 
     public static boolean checkCarContentAvailable(String licensePlate, String provice) {
         CAR_REF.addValueEventListener(CAR_VALUE_LISTENER);
@@ -126,11 +126,11 @@ public class FirebaseActivity {
         DATA_REF.addValueEventListener(CAR_VALUE_LISTENER);
     }
 
-    public static void fetchThiefWarrantData(String citizenID){
+    public static void fetchThiefWarrantData(String citizenID) {
         StoreData.setThiefID(citizenID);
         try {
             THIEF_REF.removeEventListener(THIEF_WARRANT_LIST_PULLER);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Log.e("FIREBASE", "Can't remove event listener");
         }
         THIEF_REF.addValueEventListener(THIEF_WARRANT_LIST_PULLER);
@@ -158,5 +158,8 @@ class StoreData {
     public static void setCurrentLicense(String newLicense) {
         currentLicense = newLicense;
     }
-    public static String getCurrentLicense(){ return currentLicense; }
+
+    public static String getCurrentLicense() {
+        return currentLicense;
+    }
 }

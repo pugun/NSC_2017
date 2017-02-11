@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MissCar extends MainActivity {
+public class MissCar extends AppCompatActivity {
     ViewPager viewPager;
     CustomSwip customSwip;
     private PopupMenu mPopupMenu;
