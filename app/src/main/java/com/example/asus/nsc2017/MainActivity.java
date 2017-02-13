@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,11 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import static com.example.asus.nsc2017.R.id.imageButton;
+import static com.example.asus.nsc2017.R.id.license2;
 
 public class MainActivity extends AppCompatActivity {
     private PopupMenu mPopupMenu;
     private Intent recieveDataIntent;
-    private String lic1, lic2, prov;
+    private static String lic1, lic2, prov;
     private static Context staticContext;
     private static boolean isFirstTimeSync = true, isCreated = false;
 
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         lic2 = recieveDataIntent.getStringExtra(Type.GET_LICENSE2);
         prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
 
-        importDataFromStoreData();
         setIm();
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
@@ -128,33 +129,38 @@ public class MainActivity extends AppCompatActivity {
         //      age.setText(ageString);
     }
 
-    public void importDataFromStoreData() {
+    public static void importDataFromStoreData() {
         boolean isTheif = false, isLost = false;
 
-        ownerID = StoreData.carsModel.getOwner_id();
-        carID = StoreData.carsModel.getIdcar();
+        String ownerID = StoreData.carsModel.getOwner_id();
 
         if (StoreData.thiefList.contains(ownerID)) isTheif = true;
-        if (StoreData.lostList.contains(carID)) isLost = true;
+        if (StoreData.lostList.contains(StoreData.currentLicense)) isLost = true;
 
         if (isTheif || isLost)
             intentNotifiedData(isLost, isTheif);
 
     }
 
-    public void intentNotifiedData(boolean isLost, boolean isThief) {
-        Intent intentToAlert = new Intent(getApplicationContext(), Alert.class);
+    public static void intentNotifiedData(boolean isLost, boolean isThief) {
+        Intent intentToAlert = new Intent(staticContext, Alert.class);
         if (isLost && isThief) {
             intentToAlert.putExtra("THIEF", true);
             intentToAlert.putExtra("LOST", true);
+            intentToAlert.putExtra("LOST_LICENSE" , StoreData.currentLostCarLicense);
+            intentToAlert.putExtra("THIEF_ID" , StoreData.carsModel.getOwner_id());
         } else if (isLost) {
             intentToAlert.putExtra("THIEF", false);
             intentToAlert.putExtra("LOST", true);
+            intentToAlert.putExtra("LOST_LICENSE" , StoreData.currentLostCarLicense);
+            intentToAlert.putExtra("THIEF_ID" , "NO_DATA");
         } else if (isThief) {
             intentToAlert.putExtra("THIEF", true);
             intentToAlert.putExtra("LOST", false);
+            intentToAlert.putExtra("LOST_LICENSE" , "NO_DATA");
+            intentToAlert.putExtra("THIEF_ID" , StoreData.carsModel.getOwner_id());
         }
-        startActivity(intentToAlert);
+        staticContext.startActivity(intentToAlert);
     }
 
     public static void intentNotFound() {
@@ -189,6 +195,8 @@ public class MainActivity extends AppCompatActivity {
     public static void finishedSync() {
         if (isCreated) {
             fetchingDialog.dismiss();
+            importDataFromStoreData();
+            checkData();
             setTex();
         }
     }
@@ -216,7 +224,13 @@ public class MainActivity extends AppCompatActivity {
         if(lic2.equals("2FAST4U")) {
             i.setImageResource(R.drawable.iii);
         }
+    }
 
+    private static void checkData(){
+        Log.e("CHECK_DATA" , "Data Size : " + StoreData.lostList.size());
+        for(String key : StoreData.lostList){
+            Log.e("CHECK_DATA" , key);
+        }
     }
 
 }

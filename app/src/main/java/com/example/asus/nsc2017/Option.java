@@ -43,13 +43,14 @@ public class Option extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option);
+        FirebaseActivity.initializeDataList();
+
         ANDROID_DATA_DIR = this.getApplicationInfo().dataDir;
         type = (ImageButton) findViewById(R.id.type);
         camera = (ImageButton) findViewById(R.id.camera);
         type.setOnClickListener(this);
         camera.setOnClickListener(this);
-
-
+        
         intent = new Intent(getApplicationContext(), Type.class);
 
     }

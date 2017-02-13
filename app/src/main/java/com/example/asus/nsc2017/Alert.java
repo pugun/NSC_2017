@@ -10,6 +10,7 @@ public class Alert extends AppCompatActivity implements View.OnClickListener {
 
     Intent intent;
     ImageView lostBtn, thiefBtn;
+    String lostCarLicense = new String() , thiefID = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,8 @@ public class Alert extends AppCompatActivity implements View.OnClickListener {
         intent = getIntent();
         isThief = intent.getBooleanExtra("THIEF", false);
         isLost = intent.getBooleanExtra("LOST", false);
+        lostCarLicense = intent.getStringExtra("LOST_LICENSE");
+        thiefID = intent.getStringExtra("THIEF_ID");
 
         lostBtn = (ImageView) findViewById(R.id.lostCar);
         thiefBtn = (ImageView) findViewById(R.id.thief);
@@ -36,9 +39,9 @@ public class Alert extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == lostBtn) {
-            startActivity(new Intent(getApplicationContext() , MissCar.class));
+            startActivity(new Intent(getApplicationContext() , MissCar.class).putExtra("LOST_LICENSE" , lostCarLicense));
         } else if (view == thiefBtn){
-            startActivity(new Intent(getApplicationContext() , Warrant.class));
+            startActivity(new Intent(getApplicationContext() , Warrant.class).putExtra("THIEF_ID" , thiefID));
         }
     }
 }

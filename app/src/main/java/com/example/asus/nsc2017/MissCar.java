@@ -21,12 +21,18 @@ public class MissCar extends AppCompatActivity {
     private PopupMenu mPopupMenu;
     private static boolean isFirstTimeSync = true, isCreated =false;
     private static TextView name, birthDate, id, address, idcar, license ;
+    Intent intent;
+    String lostCarLicense ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_miss_car);
         isCreated = true;
+
+        intent = getIntent();
+        lostCarLicense = intent.getStringExtra("LOST_LICENSE");
+        FirebaseActivity.fetchLostCar(lostCarLicense);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         customSwip = new CustomSwip(this);
@@ -69,7 +75,7 @@ public class MissCar extends AppCompatActivity {
     }
 
     private static void setTex(){
-        name.setText(StoreData.ownerModel.getName());
+        name.setText(StoreData..getName());
         birthDate.setText(StoreData.ownerModel.getBirthDate());
         id.setText(StoreData.ownerModel.getId());
         address.setText(StoreData.ownerModel.getAddress());

@@ -57,7 +57,6 @@ public class FirebaseActivity {
                     for (DataSnapshot lostCar : dataSnapshot.getChildren()) {
                         StoreData.lostList.add(lostCar.getKey());
                     }
-                    MissCar.finishedSync();
                 }
 
                 @Override
@@ -94,7 +93,19 @@ public class FirebaseActivity {
                     Log.e("FIREBASE", "[LOST CAR] Something error!");
                     databaseError.toException().printStackTrace();
                 }
-            };
+            } , LOST_DETIAL_PULLER = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            DataSnapshot lostCar = dataSnapshot.child(StoreData.getCurrentLostCarLicense());
+            StoreData.lostModel = lostCar.getValue(LostModel.class);
+            MissCar.finishedSync();
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
 
     public static boolean checkCarContentAvailable(String licensePlate, String provice) {
         CAR_REF.addValueEventListener(CAR_VALUE_LISTENER);
@@ -136,6 +147,15 @@ public class FirebaseActivity {
         }
         THIEF_REF.addValueEventListener(THIEF_WARRANT_LIST_PULLER);
     }
+
+    public static void fetchLostCar(String lostCarLicense){
+        try {
+            LOST_REF.removeEventListener(LOST_DETIAL_PULLER);
+        } catch (Exception ex) {
+            Log.e("FIREBASE", "Can't remove event listener");
+        }
+        LOST_REF.addValueEventListener(LOST_DETIAL_PULLER);
+    }
 }
 
 class StoreData {
@@ -144,6 +164,16 @@ class StoreData {
     public static LostModel lostModel;
     public static OwnerModel ownerModel = new OwnerModel();
     public static String currentLicense = new String();
+
+    public static String getCurrentLostCarLicense() {
+        return currentLostCarLicense;
+    }
+
+    public static void setCurrentLostCarLicense(String currentLostCarLicense) {
+        StoreData.currentLostCarLicense = currentLostCarLicense;
+    }
+
+    public static String currentLostCarLicense = new String();
     public static ArrayList<String> thiefWarrantList = new ArrayList<>();
 
     public static String getThiefID() {
