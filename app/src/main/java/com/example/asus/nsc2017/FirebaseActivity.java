@@ -40,14 +40,13 @@ public class FirebaseActivity {
                 //StoreData.carsModel.setOwner_id(cars.child(StoreData.currentLicense).child("owner_id").getValue().toString());
                 ownerID = StoreData.carsModel.getOwner_id();
                 StoreData.ownerModel = owner.child(ownerID).getValue(OwnerModel.class);
-            else {
+            } else {
                 MainActivity.intentNotFound();
             }
         }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-        }
+            @Override
+            public void onCancelled (DatabaseError databaseError){
+            }
     },
             LOST_LIST_PULLER = new ValueEventListener() {
                 @Override
