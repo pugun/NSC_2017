@@ -25,7 +25,8 @@ public class FirebaseActivity {
             THIEF_REF = projectDataBase.getReference("thief"),
             DATA_REF = projectDataBase.getReference();
 
-    private static ValueEventListener CAR_VALUE_LISTENER = new ValueEventListener() {
+    private static ValueEventListener
+            CAR_VALUE_LISTENER = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             String ownerID;
@@ -40,13 +41,15 @@ public class FirebaseActivity {
                 //StoreData.carsModel.setOwner_id(cars.child(StoreData.currentLicense).child("owner_id").getValue().toString());
                 ownerID = StoreData.carsModel.getOwner_id();
                 StoreData.ownerModel = owner.child(ownerID).getValue(OwnerModel.class);
+                MainActivity.finishedSync();
             } else {
+                MainActivity.finishedSync();
                 MainActivity.intentNotFound();
             }
         }
-            @Override
-            public void onCancelled (DatabaseError databaseError){
-            }
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+        }
     },
             LOST_LIST_PULLER = new ValueEventListener() {
                 @Override
