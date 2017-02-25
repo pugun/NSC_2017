@@ -20,8 +20,9 @@ public class MissCar extends AppCompatActivity {
     CustomSwip customSwip;
     private PopupMenu mPopupMenu;
     private static boolean isFirstTimeSync = true, isCreated =false;
-    private static TextView name, birthDate, id, address, idcar, license ;
-    Intent intent;
+    private static TextView lost, lostDate, lostTime, detail, brand, model, license, province, color, fuel, engine, idprb ;
+    private static String lic2, prov;
+    Intent intent, recieveDataIntent;
     String lostCarLicense ;
 
     @Override
@@ -29,6 +30,11 @@ public class MissCar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_miss_car);
         isCreated = true;
+
+
+        recieveDataIntent = getIntent();
+        prov = recieveDataIntent.getStringExtra(Type.GET_PROVINCE);
+        lic2 = recieveDataIntent.getStringExtra(Type.GET_LICENSE2);
 
         intent = getIntent();
         lostCarLicense = intent.getStringExtra("LOST_LICENSE");
@@ -64,22 +70,41 @@ public class MissCar extends AppCompatActivity {
                 return true;
             }
         });
-        name = (TextView) findViewById(R.id.name);
-        birthDate = (TextView) findViewById(R.id.birthDate);
-        id = (TextView) findViewById(R.id.id);
-        address = (TextView) findViewById(R.id.address);
-        idcar = (TextView) findViewById(R.id.idcar);
+
+
+        province = (TextView) findViewById(R.id.province);
         license = (TextView) findViewById(R.id.license);
+        lost = (TextView) findViewById(R.id.lost);
+        lostDate = (TextView) findViewById(R.id.lostDate);
+        lostTime = (TextView) findViewById(R.id.lostTime);
+        detail = (TextView) findViewById(R.id.detail);
+        brand = (TextView) findViewById(R.id.brand);
+        model = (TextView) findViewById(R.id.model);
+        color = (TextView) findViewById(R.id.color);
+        fuel = (TextView) findViewById(R.id.fuel);
+        engine = (TextView) findViewById(R.id.engine);
+        idprb = (TextView) findViewById(R.id.idprb);
 
         if (isFirstTimeSync) startSync();
     }
 
     private static void setTex(){
-        name.setText(StoreData..getName());
-        birthDate.setText(StoreData.ownerModel.getBirthDate());
-        id.setText(StoreData.ownerModel.getId());
-        address.setText(StoreData.ownerModel.getAddress());
-        license.setText(StoreData.getCurrentLicense());
+        /*
+
+
+        province.setText(prov);
+        license.setText(lic2);
+        lostDate.setText(StoreData.lostModel.getLostDate());
+        lostTime.setText(StoreData.lostModel.getLostTime());
+        detail.setText(StoreData.lostModel.getDetail());
+ */
+        brand.setText(StoreData.carsModel.getBrand());
+        model.setText(StoreData.carsModel.getModel());
+        color.setText(StoreData.carsModel.getColor());
+        fuel.setText(StoreData.carsModel.getFuel());
+        engine.setText(StoreData.carsModel.getEngine());
+        //       idprb.setText(StoreData.carsModel.getIdprb());
+
     }
 
     @Override

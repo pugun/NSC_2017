@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,13 +19,21 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Warrant extends AppCompatActivity {
     private PopupMenu mPopupMenu;
     private static boolean isFirstTimeSync = true, isCreated = false;
-    static TextView detail, lostDate, lostTime, license;
+    static TextView name, birthDate, id, address;
+    private Intent intent;
+    private static String lic1, lic2, prov;
+    String thiefID;
+    private ImageView i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warrant);
         isCreated = true;
+
+        intent = getIntent();
+        thiefID = intent.getStringExtra("THIEF_ID");
+        FirebaseActivity.fetchThiefWarrantData(thiefID);
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         mPopupMenu = new PopupMenu(this, imageButton);
@@ -53,18 +62,22 @@ public class Warrant extends AppCompatActivity {
             }
         });
 
-        detail = (TextView) findViewById(R.id.detail);
-        lostDate = (TextView) findViewById(R.id.lostDate);
-        lostTime = (TextView) findViewById(R.id.lostTime);
-        license = (TextView) findViewById(R.id.license);
+        setIm();
+
+
+
+        name = (TextView) findViewById(R.id.name);
+        birthDate = (TextView) findViewById(R.id.birthDate);
+        id = (TextView) findViewById(R.id.id);
+        address = (TextView) findViewById(R.id.address);
         if(isFirstTimeSync) startSync();
     }
 
     private static void setTex() {
-        license.setText(StoreData.getCurrentLicense());
-//        detail.setText(StoreData.lostModel.getDetail());
-//        lostDate.setText(StoreData.lostModel.getLostDate());
-//        lostTime.setText(StoreData.lostModel.getLostTime());
+        name.setText(StoreData.ownerModel.getName());
+        birthDate.setText(StoreData.ownerModel.getBirthDate());
+        id.setText(StoreData.ownerModel.getId());
+        address.setText(StoreData.ownerModel.getAddress());
     }
 
     @Override
@@ -105,6 +118,16 @@ public class Warrant extends AppCompatActivity {
             fetchingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             fetchingDialog.setIndeterminate(true);
             fetchingDialog.show();
+        }
+    }
+
+    public void setIm() {
+        i = (ImageView) findViewById(R.id.imageView6) ;
+        if(StoreData.ownerModel.getId().equals("1419901704086")) {
+            i.setImageResource(R.drawable.kt3216);
+        }
+        if(StoreData.ownerModel.getId().equals("1402230659326")) {
+          //  i.setImageResource(R.drawable.etu870);
         }
     }
 }
